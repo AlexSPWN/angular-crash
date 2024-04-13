@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Task } from '../../Task';
 import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
@@ -8,13 +8,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent {
+export class AddTaskComponent implements OnDestroy {
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
   text: string = "";
   day: string = "";
   reminder: boolean = false;
   showAddTask: boolean = false;
   subscription: Subscription = new Subscription();
+  justForTest: string = "Hello from ViewChild";
 
   constructor(private uiService:UiService) {
     this.subscription = this.uiService.onToggle().subscribe(value => this.showAddTask = value);
@@ -33,5 +34,9 @@ export class AddTaskComponent {
     }
 
     this.onAddTask.emit(newTask);
+  }
+
+  ngOnDestroy(): void {
+    console.log("Add task destroyed");
   }
 }

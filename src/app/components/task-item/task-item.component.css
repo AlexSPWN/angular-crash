@@ -14,3 +14,13 @@
     align-items: center;
     justify-content: space-between;
   }
+
+.task.even {
+    background-color: steelblue;
+    color: whitesmoke;
+}
+
+.task.odd {
+    background-color:slategray;
+    color: whitesmoke;
+}

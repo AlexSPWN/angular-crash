@@ -11,8 +11,10 @@ export class TaskItemComponent {
   @Input() task!: Task;
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
   @Output() onToggleRemider: EventEmitter<Task> = new EventEmitter();
+  @Input() line: string = "";
 
   faTimes = faTimes;
+  //lineClass: string = this.line ? 'even' : 'odd';
 
   onDelete(task: Task) {
     this.onDeleteTask.emit(task);

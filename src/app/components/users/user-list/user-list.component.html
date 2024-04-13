@@ -1,0 +1,13 @@
+<!-- <div>
+{{getError$ | async }}
+</div> -->
+<div>Total users: {{userListCount$ | async }}</div>
+<div *ngFor="let user of userList$ | async as userList">
+    <app-user [user] = 'user'></app-user>
+</div>
+<!-- <div *ngFor="let user of userList">
+    <app-user [user] = 'user'></app-user>
+</div> -->
+<div *ngFor="let f of fff$ | async">
+{{f.name}}
+</div>

@@ -22,6 +22,11 @@ export class TaskService {
     /* const tasks = of(TASKS);
     return tasks; */
     return this.http.get<Task[]>(this.apiUrl);
+    //return this.http.get<Task[]>('/tasks'); 
+    //proxy.conf.json
+    //https://angular.io/guide/build
+
+
   }
 
   deleteTask(task: Task): Observable<Task> {
@@ -37,4 +42,13 @@ export class TaskService {
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task, httpOptions);
   }
+
+  //Test
+  ownObs = new Observable(o => {
+    o.next(1);
+    o.next(2);
+    o.next(3);
+    o.complete();
+    //o.error('Error: dddd')
+  });
 }
