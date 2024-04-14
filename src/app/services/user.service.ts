@@ -21,6 +21,10 @@ export class UserService {
     shareReplay(1)
   );
 
+  getUserById(id: number) {
+    return this.httpClient.get<User>(`${this.apiUrl}/${id}`);
+  }
+
   getRequestUsers() {
     const request = new HttpRequest('GET', this.apiUrl, { reportProgress: true });
     return this.httpClient.request(request);

@@ -20,6 +20,10 @@ import { RequestInterceptor } from './services/request.interceptor';
 import { InitService } from './services/init.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { HoverDirective } from './directives/hover.directive';
+import { UnameValidatorDirective } from './directives/uname-validator.directive';
+import { MyvalidatorDirective } from './directives/myvalidator.directive';
 
 /* const appRoutes: Routes = [
   { path: '', component: TasksComponent },
@@ -43,7 +47,11 @@ function initFactory(initService: InitService) {
     FooterComponent,
     UsersComponent,
     UserComponent,
-    UserListComponent
+    UserListComponent,
+    UserFormComponent,
+    HoverDirective,
+    UnameValidatorDirective,
+    MyvalidatorDirective
   ],
   imports: [
     BrowserModule,
