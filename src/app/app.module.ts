@@ -3,7 +3,7 @@ import { BrowserModule, enableDebugTools } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+//import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,17 +13,19 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UsersComponent } from './components/users/users.component';
-import { UserComponent } from './components/users/user/user.component';
-import { UserListComponent } from './components/users/user-list/user-list.component';
+//import { UsersComponent } from './components/users/users.component';
+//import { UserComponent } from './components/users/user/user.component';
+//import { UserListComponent } from './components/users/user-list/user-list.component';
 import { RequestInterceptor } from './services/request.interceptor';
 import { InitService } from './services/init.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserFormComponent } from './components/users/user-form/user-form.component';
-import { HoverDirective } from './directives/hover.directive';
-import { UnameValidatorDirective } from './directives/uname-validator.directive';
-import { MyvalidatorDirective } from './directives/myvalidator.directive';
+//import { UserFormComponent } from './components/users/user-form/user-form.component';
+//import { HoverDirective } from './directives/hover.directive';
+//import { UnameValidatorDirective } from './directives/uname-validator.directive';
+//import { MyvalidatorDirective } from './directives/myvalidator.directive';
+
+//import { UsersModule } from './components/users/users.module';
 
 /* const appRoutes: Routes = [
   { path: '', component: TasksComponent },
@@ -45,19 +47,20 @@ function initFactory(initService: InitService) {
     AddTaskComponent,
     AboutComponent,
     FooterComponent,
-    UsersComponent,
+/*     UsersComponent,
     UserComponent,
     UserListComponent,
-    UserFormComponent,
-    HoverDirective,
+    UserFormComponent, */
+    /* HoverDirective,
     UnameValidatorDirective,
-    MyvalidatorDirective
+    MyvalidatorDirective */
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    //UsersModule,
     //RouterModule.forRoot(appRoutes, {enableTracing: false}),
     AppRoutingModule,
     BrowserAnimationsModule

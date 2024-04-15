@@ -18,23 +18,25 @@
     <div class="form-control">
         <label for="username">UserName </label>
         <input #formUserName="ngModel" appUnameValidator appHover="lightgray" required="true"  type="text" id="username" name="username" placeholder="d_john" [(ngModel)]="userData.username" />
-        <div *ngIf="formUserName.errors?.['unameInValid']">Wrong user name</div>
+        <div style="color: brown;" *ngIf="formUserName.errors?.['unameInValid']">Wrong user name</div>
         <!-- <div>{{formUserName.errors | json }}</div> -->
     </div>
     <div class="form-control">
         <label for="email">EMail </label>
         <input required="true" #formEmail="ngModel" type="email" email id="email" name="email" placeholder="John.Doe@mail.com" [(ngModel)]="userData.email" />
-        <div *ngIf="formEmail.errors?.['email']">Wrong Email</div>
+        <div style="color: brown;" *ngIf="formEmail.errors?.['email']">Wrong Email</div>
     </div>
     <div class="form-control">
         <label for="phone">Phone </label>
         <input required="true" #formPhone="ngModel" pattern="[\-\+\s0-9]+" type="tel" id="phone" name="phone" placeholder="+380(00)1112233" [(ngModel)]="userData.phone" />
-        <div *ngIf="!userForm.pristine && formPhone.errors?.['pattern']">Wrong Phone</div>
+        <div style="color: brown;" *ngIf="!userForm.pristine && formPhone.errors?.['pattern']">Wrong Phone</div>
     </div>
     <button [disabled]="userForm.invalid" class="btn btn-primary" type="submit">Save</button>
     <div>Form is valid: {{userForm.valid| json}}</div>
-    <div>Form is pristine: {{userForm.pristine| json}}</div>
-    <div>Form is dirty: {{userForm.dirty| json}}</div>
     <div>Form is invalid: {{userForm.invalid| json}}</div>
-    <div>Form is valid: {{userForm.value | json}}</div>
+    <div>Form is pristine: {{userForm.pristine| json}}</div>
+    <div>Form is dirty: {{userForm.dirty| json}}</div>    
+    <div>Form is touched: {{userForm.touched| json}}</div>
+    <div>Form is untouched: {{userForm.untouched| json}}</div>    
+    <div>Form value: {{userForm.value | json}}</div>
 </form>

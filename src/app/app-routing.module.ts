@@ -9,10 +9,14 @@ import { UserFormComponent } from './components/users/user-form/user-form.compon
 const appRoutes: Routes = [
   { path: '', component: TasksComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id', component: UserFormComponent },
+  /* { path: 'users', component: UsersComponent },
+  { path: 'users/:id', component: UserFormComponent }, */
+  { path: 'users', loadChildren: () => import('./components/users/users.module').then((m)=> m.UsersModule),},
   { path: '**', redirectTo: '' }
 ]
+
+//creating lazy loaded module
+// ng g m assets --route=assets --rounting --module=app
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
