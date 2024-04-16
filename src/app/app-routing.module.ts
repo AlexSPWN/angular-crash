@@ -5,13 +5,16 @@ import { AboutComponent } from './components/about/about.component';
 import { UsersComponent } from './components/users/users.component';
 import { AppComponent } from './app.component';
 import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { loginGuard } from './guards/login.guard';
 
 const appRoutes: Routes = [
   { path: '', component: TasksComponent },
   { path: 'about', component: AboutComponent },
   /* { path: 'users', component: UsersComponent },
   { path: 'users/:id', component: UserFormComponent }, */
-  { path: 'users', loadChildren: () => import('./components/users/users.module').then((m)=> m.UsersModule),},
+  { path: 'users', 
+      //canActivate: [loginGuard], 
+      loadChildren: () => import('./components/users/users.module').then((m)=> m.UsersModule),},
   { path: '**', redirectTo: '' }
 ]
 

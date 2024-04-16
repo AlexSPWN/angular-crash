@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { loginGuard } from 'src/app/guards/login.guard';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-button',
@@ -10,7 +12,10 @@ export class ButtonComponent {
   @Input() text!: string;
   @Output() btnClick = new EventEmitter()
 
+  constructor(private loginService: LoginService) {}
+
   onClick() {
     this.btnClick.emit();
+    this.loginService.login('test', 'test');
   }
 }
