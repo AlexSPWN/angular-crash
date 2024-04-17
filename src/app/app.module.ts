@@ -20,6 +20,7 @@ import { RequestInterceptor } from './services/request.interceptor';
 import { InitService } from './services/init.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { UserFormComponent } from './components/users/user-form/user-form.component';
 //import { HoverDirective } from './directives/hover.directive';
 //import { UnameValidatorDirective } from './directives/uname-validator.directive';
@@ -63,7 +64,8 @@ function initFactory(initService: InitService) {
     //UsersModule,
     //RouterModule.forRoot(appRoutes, {enableTracing: false}),
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     {

@@ -19,7 +19,7 @@
         <label for="username">UserName </label>
         <input #formUserName="ngModel" appUnameValidator appHover="lightgray" required="true"  type="text" id="username" name="username" placeholder="d_john" [(ngModel)]="userData.username" />
         <div style="color: brown;" *ngIf="formUserName.errors?.['unameInValid']">Wrong user name</div>
-        <!-- <div>{{formUserName.errors | json }}</div> -->
+        <div>{{formUserName.errors | json }}</div>
     </div>
     <div class="form-control">
         <label for="email">EMail </label>

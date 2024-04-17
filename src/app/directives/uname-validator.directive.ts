@@ -1,6 +1,9 @@
-import { Directive } from '@angular/core';
+import { Directive, Injectable } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
+/* @Injectable({
+  providedIn: 'root'
+}) */
 @Directive({
   selector: '[appUnameValidator]',
   providers: [
