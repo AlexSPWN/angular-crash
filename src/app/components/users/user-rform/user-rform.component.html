@@ -2,53 +2,103 @@
 <div>Form Data: {{ userRForm.value | json}}</div>
 <div>From Service: {{ userData | json}}</div>
 <form [formGroup]="userRForm" (ngSubmit)="saveForm()">
-    <div class="form-control">
+    <div class="form-control has-validation">
         <!-- <div class="form-floating mb-3">
             <input type="text" id="name" class="form-control" formControlName="name" placeholder="John Doe" />
             <label for="name">Name:</label>
         </div> -->
-        
+
         <label for="name">Name:</label>
         <input type="text" id="name" class="form-control" formControlName="name" placeholder="John Doe" />
-        
-    <!-- </div>
 
-    <div class="form-control"> -->               
+        <!-- </div>
+
+    <div class="form-control"> -->
         <label for="username">Username:</label> <!--is-invalid-->
-        <input type="text" id="username" class="form-control" formControlName="username" placeholder="user.name"/>
+        <input type="text" id="username" class="form-control" formControlName="username" placeholder="user.name" />
         <div style="color: brown;" *ngIf="userRForm.get('username')?.errors?.['unameInValid']">Wrong user name</div>
+            
         <!-- <div>{{userRForm.get('username')?.errors | json}}</div> -->
 
-    <!-- </div>
+        <!-- </div>
         
     <div class="form-control"> -->
         <label for="email">Email:</label>
         <input type="text" id="email" formControlName="email" placeholder="user@some.com" />
-    <!-- </div>
+        <!-- </div>
     <div class="form-control"> -->
         <label for="phone">Phone:</label>
         <input type="text" id="phone" formControlName="phone" placeholder="+123 45 67" />
     </div>
+    <!-- ADD CONTROL -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-info" type="button" (click)="userRForm.get('role') ? removeControl() : addControl()">{{ userRForm.get('role') ? "Remove control" : "Add control" }}</button>
+        </div>
+        <div class="col">
+            <!-- <button class="btn btn-info" type="button" (click)="removeControl()">Remove control</button> -->
+        </div>
+    </div>
+    <div class="form-control" *ngIf="userRForm.get('role')">
+        <label for="role">Role:</label>
+        <input type="text" id="role" formControlName="role" placeholder="admin" />
+    </div>
+    <!-- NESTED FORM -->
     <div class="accordion" id="accordionExample" formGroupName="address">
         <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Address
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <label for="city">City:</label>
-                <input type="text" id="city" formControlName="city" class="form-control" placeholder="Kyiv" />
-                <label for="street">Street:</label>
-                <input type="text" id="street" formControlName="street" class="form-control" placeholder="Main street" />
-                <label for="suite">Suite:</label>
-                <input type="text" id="suite" formControlName="suite" class="form-control" placeholder="Main suite" />
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Address
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" formControlName="city" class="form-control" placeholder="Kyiv" />
+                    <label for="street">Street:</label>
+                    <input type="text" id="street" formControlName="street" class="form-control"
+                        placeholder="Main street" />
+                    <label for="suite">Suite:</label>
+                    <input type="text" id="suite" formControlName="suite" class="form-control"
+                        placeholder="Main suite" />
+                </div>
             </div>
-          </div>
+        </div>
+    </div>
+    <!-- DYNAMIC FORM -->
+    <div>
+        <button type="button" class="btn btn-info" (click)="addCompany()">Add Company</button>
+    </div>
+    <div formArrayName="companies">
+        <div *ngFor="let comp of companies().controls; let i=index" class="form-control">
+            <div>Company {{i + 1}}</div>
+            <div class="row">
+                <div formGroupName="{{i}}" class="col">
+                    <label for="cname">Company Name:</label>
+                    <input type="text" id="cname" formControlName="name" class="form-control" placeholder="Company Brand" />
+                </div>
+                <div formGroupName="{{i}}" class="col">
+                    <label for="cduration">Duration (month):</label>
+                    <input type="number" id="cduration" formControlName="duration" class="form-control" placeholder="" />
+                </div>
+            </div>
+            <div class="row">
+                <div formGroupName="{{i}}" class="col">
+                    <label for="ccountry">Country:</label>
+                    <input type="text" id="ccountry" formControlName="country" class="form-control" placeholder="Ukraine" />
+                </div>
+                <div formGroupName="{{i}}" class="col">
+                    <label for="ccity">City:</label>
+                    <input type="text" id="ccity" formControlName="city" class="form-control" placeholder="Kyiv" />
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="removeCompany(i)">Remove</button>
         </div>
     </div>
     <div>
-        <button [ngClass]="" class="btn btn-primary" type="submit">Save</button>
+        <button [disabled]="userRForm.invalid" [ngClass]="" class="btn btn-primary" type="submit">Save</button>
+        <button [ngClass]="" class="btn btn-warning" type="button" (click)="resetForm()">Reset</button>
     </div>
 </form>
