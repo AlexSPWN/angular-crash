@@ -2,33 +2,39 @@
 <div>Form Data: {{ userRForm.value | json}}</div>
 <div>From Service: {{ userData | json}}</div>
 <form [formGroup]="userRForm" (ngSubmit)="saveForm()">
+    <!-- <div *ngIf="userRForm.hasError('isDifferent')" > names are not equal </div> -->
     <div class="form-control has-validation">
         <!-- <div class="form-floating mb-3">
             <input type="text" id="name" class="form-control" formControlName="name" placeholder="John Doe" />
             <label for="name">Name:</label>
         </div> -->
 
-        <label for="name">Name:</label>
+        <label for="name" class="form-label">Name:</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">👤</span>   
         <input type="text" id="name" class="form-control" formControlName="name" placeholder="John Doe" />
+        </div>
 
         <!-- </div>
 
     <div class="form-control"> -->
-        <label for="username">Username:</label> <!--is-invalid-->
+        <label for="username"  class="form-label">Username:</label> <!--is-invalid-->
         <input type="text" id="username" class="form-control" formControlName="username" placeholder="user.name" />
         <div style="color: brown;" *ngIf="userRForm.get('username')?.errors?.['unameInValid']">Wrong user name</div>
+        <!-- <div style="color: brown;" *ngIf="userRForm.get('username')?.hasError('unameInValid')">Wrong user name2</div> -->
             
         <!-- <div>{{userRForm.get('username')?.errors | json}}</div> -->
 
-        <!-- </div>
+        <!--</div>-->
         
-    <div class="form-control"> -->
-        <label for="email">Email:</label>
-        <input type="text" id="email" formControlName="email" placeholder="user@some.com" />
-        <!-- </div>
-    <div class="form-control"> -->
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" formControlName="phone" placeholder="+123 45 67" />
+        <label for="email" class="form-label">Email:</label>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">📧</span>   
+        <input type="text" id="email" class="form-control" formControlName="email" placeholder="user@some.com" />
+    </div>
+    <!--<div class="form-control"> -->
+        <label for="phone" class="form-label">Phone:</label>
+        <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="+123 45 67" />
     </div>
     <!-- ADD CONTROL -->
     <div class="row">
@@ -36,12 +42,13 @@
             <button class="btn btn-info" type="button" (click)="userRForm.get('role') ? removeControl() : addControl()">{{ userRForm.get('role') ? "Remove control" : "Add control" }}</button>
         </div>
         <div class="col">
-            <!-- <button class="btn btn-info" type="button" (click)="removeControl()">Remove control</button> -->
         </div>
     </div>
     <div class="form-control" *ngIf="userRForm.get('role')">
-        <label for="role">Role:</label>
-        <input type="text" id="role" formControlName="role" placeholder="admin" />
+        <label for="role" class="{{checkIfRequired('role') ? 'required' : ''}}">Role:</label>
+        <input type="text" id="role" class="form-control" formControlName="role" placeholder="admin" />
+        <div style="color: brown;" *ngIf="userRForm.get('role')?.hasError('required')">Role is required</div>
+        {{checkIfRequired('role')}}
     </div>
     <!-- NESTED FORM -->
     <div class="accordion" id="accordionExample" formGroupName="address">
@@ -55,8 +62,12 @@
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" formControlName="city" class="form-control" placeholder="Kyiv" />
+                    <div class="form-control" >
+                        <label for="city">City:</label>
+                        <input type="text" id="city" formControlName="city" class="form-control" placeholder="Kyiv" />
+                        <div style="color: brown;" *ngIf="userRForm.get('address.city')?.hasError('required')">City is required</div>
+                        <!-- {{userRForm.get('address.city')?.hasError('required') | json}} -->
+                    </div>
                     <label for="street">Street:</label>
                     <input type="text" id="street" formControlName="street" class="form-control"
                         placeholder="Main street" />
@@ -78,6 +89,7 @@
                 <div formGroupName="{{i}}" class="col">
                     <label for="cname">Company Name:</label>
                     <input type="text" id="cname" formControlName="name" class="form-control" placeholder="Company Brand" />
+                    <div style="color: brown;" *ngIf="userRForm.get(['companies', i, 'name'])?.errors?.['required']">Company Name is Required</div>
                 </div>
                 <div formGroupName="{{i}}" class="col">
                     <label for="cduration">Duration (month):</label>

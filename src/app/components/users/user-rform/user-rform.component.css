@@ -1,3 +1,8 @@
 .form-control label {
     color: blue;
 }
+
+label.required:after {
+    content: "*";
+    color: red;
+}

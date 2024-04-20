@@ -34,12 +34,12 @@ export class UserRformComponent implements OnInit {
       {
         id: new FormControl( {value: '', disabled: true}), // <-- disable value
         name: new FormControl('', Validators.required),
-        username: new FormControl('', [Validators.required, CustomValidators.checkUserName] ),
-        //username: new FormControl('', [Validators.required, this.unameValidator.validate] ),
+        //username: new FormControl('', {updateOn: 'blur', validators:[Validators.required, CustomValidators.checkUserName]}),
+        username: new FormControl('', {updateOn: 'blur', validators:[Validators.required, CustomValidators.checkUname('@')]}),
         email: new FormControl('', [Validators.required, Validators.email]),
         phone: new FormControl('', [Validators.required, Validators.pattern(/[\-\+\s0-9]+/)]),
         address: this.fb.group({ // <-- NESTED FORM
-          city: new FormControl(''),
+          city: new FormControl('', [Validators.required]),
           street: new FormControl(''),
           suite: new FormControl('')
         }),
@@ -52,7 +52,7 @@ export class UserRformComponent implements OnInit {
           }) */
           this.addCompanyControl()
         ])
-      }
+      } //, {updateOn: 'blur', validators: [ CustomValidators.checkTwoFields]}
     );
 
     this.userService.getUserById(this.userId).subscribe(data => {
@@ -87,7 +87,7 @@ export class UserRformComponent implements OnInit {
 
   addCompanyControl() {
     return this.fb.group({
-      name: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
       country: new FormControl(''),
       city: new FormControl(''),
       duration: new FormControl('')
@@ -99,8 +99,13 @@ export class UserRformComponent implements OnInit {
   }
 
   addControl() {
-    this.userRForm.addControl('role', new FormControl(''));
+    this.userRForm.addControl('role', new FormControl('', [Validators.required]));
+    
     //throw new Error('Method not implemented.');
+  }
+
+  checkIfRequired(control: string) {
+    return this.userRForm.get(control)?.hasValidator(Validators.required);
   }
 
   removeControl() {
