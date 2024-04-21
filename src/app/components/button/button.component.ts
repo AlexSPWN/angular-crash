@@ -16,6 +16,6 @@ export class ButtonComponent {
 
   onClick() {
     this.btnClick.emit();
-    this.loginService.login('test', 'test');
+    this.loginService.login('test', 'test1');
   }
 }

@@ -21,6 +21,9 @@ import { InitService } from './services/init.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InsertSymbolPipe } from './shared/insert-symbol.pipe';
+import { UsersModule } from './components/users/users.module';
+import { SharedModule } from './shared/shared.module';
 //import { UserFormComponent } from './components/users/user-form/user-form.component';
 //import { HoverDirective } from './directives/hover.directive';
 //import { UnameValidatorDirective } from './directives/uname-validator.directive';
@@ -48,6 +51,7 @@ function initFactory(initService: InitService) {
     AddTaskComponent,
     AboutComponent,
     FooterComponent,
+    //InsertSymbolPipe,
 /*     UsersComponent,
     UserComponent,
     UserListComponent,
@@ -65,7 +69,8 @@ function initFactory(initService: InitService) {
     //RouterModule.forRoot(appRoutes, {enableTracing: false}),
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
   providers: [
     {
@@ -79,7 +84,10 @@ function initFactory(initService: InitService) {
       deps: [InitService],
       multi: true
     }
-  ],
+  ], 
+  /* exports: [
+    InsertSymbolPipe
+  ], */
   bootstrap: [AppComponent]
 })
 export class AppModule { }

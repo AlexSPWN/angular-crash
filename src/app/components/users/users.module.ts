@@ -11,23 +11,27 @@ import { HoverDirective } from 'src/app/directives/hover.directive';
 import { UnameValidatorDirective } from 'src/app/directives/uname-validator.directive';
 import { MyvalidatorDirective } from 'src/app/directives/myvalidator.directive';
 import { UserRformComponent } from './user-rform/user-rform.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+//import { AppModule } from "../../app.module";
+
 
 
 @NgModule({
-  declarations: [
-    UsersComponent,
-    UserComponent,
-    UserListComponent,
-    UserFormComponent,
-    HoverDirective,
-    UnameValidatorDirective,
-    MyvalidatorDirective,
-    UserRformComponent
-  ],
-  imports: [
-    CommonModule,
-    UsersRoutingModule,
-    FormsModule, ReactiveFormsModule
-  ]
+    declarations: [
+        UsersComponent,
+        UserComponent,
+        UserListComponent,
+        UserFormComponent,
+        HoverDirective,
+        UnameValidatorDirective,
+        MyvalidatorDirective,
+        UserRformComponent
+    ],
+    imports: [
+        CommonModule,
+        UsersRoutingModule,
+        FormsModule, ReactiveFormsModule, SharedModule
+        //AppModule
+    ]
 })
 export class UsersModule { }

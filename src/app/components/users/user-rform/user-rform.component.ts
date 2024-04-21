@@ -17,13 +17,21 @@ export class UserRformComponent implements OnInit {
   userRForm!: FormGroup;
   userId: number = 0;
   userData: User | undefined;
+  formSaved: boolean = false;
   //userR: UserR = new UserR();
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router:Router, private userService: UserService) {}
   //constructor(private fb: FormBuilder, private unameValidator: UnameValidatorDirective) {}
 
   companies() {
     return this.userRForm.get('companies') as FormArray;
+  }
+
+  hasChanges() {
+    if(this.formSaved) {
+      return false;
+    }
+    return this.userRForm.dirty;
   }
 
   ngOnInit(): void {
@@ -115,6 +123,9 @@ export class UserRformComponent implements OnInit {
   saveForm() {
     console.log(this.userRForm.value);
     console.log(this.userRForm.getRawValue()); // with disabled values
+    this.formSaved = true;
+    //navigate back
+    this.router.navigate(['/users']);
   }
 
   resetForm() {

@@ -14,12 +14,14 @@ const appRoutes: Routes = [
   { path: 'users/:id', component: UserFormComponent }, */
   { path: 'users', 
       //canActivate: [loginGuard], 
-      loadChildren: () => import('./components/users/users.module').then((m)=> m.UsersModule),},
+      loadChildren: () => import('./components/users/users.module').then(m => m.UsersModule),},
+  { path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule) },
   { path: '**', redirectTo: '' }
 ]
 
 //creating lazy loaded module
 // ng g m assets --route=assets --rounting --module=app
+
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
