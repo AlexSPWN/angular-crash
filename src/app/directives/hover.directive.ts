@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appHover]',
@@ -6,9 +6,7 @@ import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@
 export class HoverDirective implements OnInit {
   @Input() appHover: string = "";
 
-  constructor(private element: ElementRef, private renderer: Renderer2) {
-    console.log(this.element);
-  }
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     /* this.element.nativeElement.addEventListener('mouseenter', () => {
@@ -21,7 +19,9 @@ export class HoverDirective implements OnInit {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
+    //inject(Renderer2).setStyle(
     this.renderer.setStyle(
+      //inject(ElementRef).nativeElement,
       this.element.nativeElement,
       'backgroundColor',
       this.appHover
@@ -29,7 +29,9 @@ export class HoverDirective implements OnInit {
   }
 
   @HostListener('mouseleave') onMouseLeave() {
+    //inject(Renderer2).setStyle(
     this.renderer.setStyle(
+      //inject(ElementRef).nativeElement,
       this.element.nativeElement,
       'backgroundColor',
       ''

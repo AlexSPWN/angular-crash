@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Component, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Component, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule, enableDebugTools } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InsertSymbolPipe } from './shared/insert-symbol.pipe';
 import { UsersModule } from './components/users/users.module';
 import { SharedModule } from './shared/shared.module';
+import { GlobalErrorHandler } from './services/errorhandler.service';
 //import { UserFormComponent } from './components/users/user-form/user-form.component';
 //import { HoverDirective } from './directives/hover.directive';
 //import { UnameValidatorDirective } from './directives/uname-validator.directive';
@@ -83,6 +84,10 @@ function initFactory(initService: InitService) {
       useFactory: initFactory,
       deps: [InitService],
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     }
   ], 
   /* exports: [

@@ -13,4 +13,9 @@ describe('UserService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  it('shod receive the data', () => {
+    service.getUsers$.subscribe(data => {
+      expect(data).toBe([]);
+    })
+  })
 });

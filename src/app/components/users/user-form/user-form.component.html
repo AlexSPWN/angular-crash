@@ -13,12 +13,12 @@
 <form #userForm="ngForm" *ngIf="userData" (ngSubmit)="onSave(userForm)" >    
     <div class="form-control">
         <label for="name">Name </label>
-        <input appHover="steelblue" required="true" type="text" id="name" name="name" placeholder="John Doe" [(ngModel)]="userData.name" />
+        <input appHover="steelblue" class="form-control" required="true" type="text" id="name" name="name" placeholder="John Doe" [(ngModel)]="userData.name" />
         <!-- [ngModelOptions]="{ updateOn: 'blur' }" -->        
     </div>
     <div class="form-control">
         <label for="username">UserName </label>
-        <input #formUserName="ngModel" appUnameValidator appHover="lightgray" required="true"  type="text" id="username" name="username" placeholder="d_john" [(ngModel)]="userData.username" />
+        <input #formUserName="ngModel" class="form-control" appUnameValidator appHover="lightgray" required="true"  type="text" id="username" name="username" placeholder="d_john" [(ngModel)]="userData.username" />
         <div style="color: brown;" *ngIf="formUserName.errors?.['unameInValid']">Wrong user name</div>
         <div>{{formUserName.errors | json }}</div>
     </div>

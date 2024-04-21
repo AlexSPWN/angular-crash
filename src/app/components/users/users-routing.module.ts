@@ -7,8 +7,8 @@ import { userformGuard } from 'src/app/guards/userform.guard';
 
 const routes: Routes = [
   { path: '', component: UsersComponent },
-  //{ path: ':id', component: UserFormComponent },
-  { path: ':id', component: UserRformComponent, canDeactivate: [userformGuard]  },
+  { path: ':id', component: UserFormComponent },
+  //{ path: ':id', component: UserRformComponent, canDeactivate: [userformGuard]  },
 ];
 
 @NgModule({
